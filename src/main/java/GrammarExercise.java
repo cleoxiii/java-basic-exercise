@@ -36,7 +36,7 @@ public class GrammarExercise {
     private static List<String> filterInput(String input) {
         return Arrays.stream(input.split(","))
                 .map(String::toUpperCase)
-                .map(word -> word.replace(""," ").trim())
+                .map(word -> word.replace("", " ").trim())
                 .collect(Collectors.toList());
     }
 }
