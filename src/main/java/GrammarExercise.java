@@ -1,18 +1,30 @@
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class GrammarExercise {
     public static void main(String[] args) {
-        //需要从命令行读入
-        String firstWordList = "";
-        String secondWordList = "";
+        // get input from terminal as required
+        String firstWordList = args[0];
+        String secondWordList = args[1];
 
         List<String> result = findCommonWordsWithSpace(firstWordList,secondWordList);
-        //按要求输出到命令行
-
+        // print output to the terminal as required
+        System.out.println(result);
     }
 
     public static List<String> findCommonWordsWithSpace(String firstWordList, String secondWordList) {
-        //在这编写实现代码
+        // please implement this method here
+        List<String> firstGroup = Arrays.asList(firstWordList.split(","));
+        List<String> secondGroup = Arrays.asList(secondWordList.split(","));
+        Predicate<String> isMatch = word -> word.matches("^[a-zA-Z]+$");
+        if (!isInputValid(firstGroup, isMatch) || !isInputValid(secondGroup, isMatch)) {
+            throw new RuntimeException("input not valid");
+        }
         return null;
+    }
+
+    private static boolean isInputValid(List<String> list, Predicate predicate) {
+        return list.stream().allMatch(predicate);
     }
 }
